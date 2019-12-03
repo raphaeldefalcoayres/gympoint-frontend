@@ -24,7 +24,7 @@ export const Content = styled.div`
   form {
     display: flex;
     flex-direction: column;
-    margin-top: 30px;
+    margin-top: 10px;
 
     label {
       font-weight: bold;
@@ -32,6 +32,7 @@ export const Content = styled.div`
       font-size: 14px;
       text-align: left;
       margin-bottom: 5px;
+      margin-top: 14px;
     }
 
     input {
@@ -41,7 +42,7 @@ export const Content = styled.div`
       height: 45px;
       padding: 0 15px;
       color: #999999;
-      margin: 0 0 10px;
+      margin: 0 0 8px 0;
 
       &::placeholder {
         color: #999999;
@@ -61,7 +62,7 @@ export const Content = styled.div`
       height: 45px;
       color: #fff;
       font-weight: bold;
-      margin: 5px 0 0;
+      margin: 7px 0 0 0;
       transition: background 0.2s;
       font-size: 16px;
 

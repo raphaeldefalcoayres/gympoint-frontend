@@ -11,25 +11,40 @@ export const Wrapper = styled.div`
 
 export const Content = styled.div`
   width: 100%;
-  max-width: 315px;
+  max-width: 360px;
   text-align: center;
+
+  div {
+    background: #fff;
+    padding: 50px 30px;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
 
   form {
     display: flex;
     flex-direction: column;
     margin-top: 30px;
 
+    label {
+      font-weight: bold;
+      color: #000;
+      font-size: 14px;
+      text-align: left;
+      margin-bottom: 5px;
+    }
+
     input {
-      background: rgba(0, 0, 0, 0.1);
-      border: 0;
+      background: #fff;
+      border: 1px solid #dddddd;
       border-radius: 4px;
-      height: 44px;
+      height: 45px;
       padding: 0 15px;
-      color: #fff;
+      color: #999999;
       margin: 0 0 10px;
 
       &::placeholder {
-        color: rgba(255, 255, 255, 0.7);
+        color: #999999;
       }
     }
 
@@ -40,17 +55,18 @@ export const Content = styled.div`
     }
 
     button {
-      background: #3b9eff;
+      background: #ee4d64;
       border: 0;
       border-radius: 4px;
-      height: 44px;
+      height: 45px;
       color: #fff;
       font-weight: bold;
       margin: 5px 0 0;
       transition: background 0.2s;
+      font-size: 16px;
 
       &:hover {
-        background: ${darken(0.03, '#3b9eff')};
+        background: ${darken(0.03, '#EE4D64')};
       }
     }
 

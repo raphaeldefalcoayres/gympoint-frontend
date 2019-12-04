@@ -1,7 +1,11 @@
 import React from 'react';
 
-// import { Container } from './styles';
+import { Container } from './styles';
 
 export default function Student() {
-  return <h1>Alunos</h1>;
+  return (
+    <Container>
+      <h1>Gerenciando alunos</h1>
+    </Container>
+  );
 }

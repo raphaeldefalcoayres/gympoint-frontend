@@ -13,19 +13,16 @@ export default function Header() {
       <Content>
         <nav>
           <img src={logo} alt="Gympoint" />
-          <Link to="/dashboard">DASHBOARD</Link>
+          <Link to="/students">ALUNOS</Link>
+          <Link to="/plans">PLANOS</Link>
+          <Link to="/registrations">MATRÍCULAS</Link>
+          <Link to="/help-orders">PEDIDOS DE AUXÍLIO</Link>
         </nav>
         <aside>
           <Profile>
             <div>
               <strong>Raphael de Falco Ayres</strong>
-              <Link to="/profile">Meu perfil</Link>
-            </div>
-            <div className="box-img">
-              <img
-                src={'https://api.adorable.io/avatars/50/abott@adorable.png'}
-                alt="avatar"
-              />
+              <button>sair do sistema</button>
             </div>
           </Profile>
         </aside>

@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import api from '~/services/api';
 
 import { Container, Head, Actions } from './styles';
 import { InputGroup, Card, Table } from '~/styles/global';
@@ -7,6 +8,35 @@ import { InputGroup, Card, Table } from '~/styles/global';
 import { MdAdd, MdSearch } from 'react-icons/md';
 
 export default function Student() {
+  const [students, setStudents] = useState([]);
+
+  async function loadStudents() {
+    const response = await api.get('users');
+
+    const data = response.data.map(student => {
+      return {
+        ...student,
+      };
+    });
+
+    setStudents(data);
+  }
+
+  useEffect(() => {
+    loadStudents();
+  }, []);
+
+  async function handleFilterList(e) {
+    const response = await api.get(`users?q=${e.target.value}`);
+    const data = response.data.map(student => {
+      return {
+        ...student,
+      };
+    });
+
+    setStudents(data);
+  }
+
   return (
     <Container>
       <Head>
@@ -17,7 +47,11 @@ export default function Student() {
           </Link>
           <InputGroup>
             <MdSearch />
-            <input type="text" placeholder="Buscar aluno" />
+            <input
+              type="text"
+              placeholder="Buscar aluno"
+              onChange={handleFilterList}
+            />
           </InputGroup>
         </Actions>
       </Head>
@@ -34,71 +68,27 @@ export default function Student() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Cha Ji-hun</td>
-              <td>exemplo@email.com.br</td>
-              <td className="text-center">12</td>
-              <td className="text-right">
-                <Link className="link-blue" to="/">
-                  editar
-                </Link>
-                <button className="link-red" type="button">
-                  apagar
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>Cha Ji-hun</td>
-              <td>exemplo@email.com.br</td>
-              <td className="text-center">12</td>
-              <td className="text-right">
-                <Link className="link-blue" to="/">
-                  editar
-                </Link>
-                <button className="link-red" type="button">
-                  apagar
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>Cha Ji-hun</td>
-              <td>exemplo@email.com.br</td>
-              <td className="text-center">12</td>
-              <td className="text-right">
-                <Link className="link-blue" to="/">
-                  editar
-                </Link>
-                <button className="link-red" type="button">
-                  apagar
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>Cha Ji-hun</td>
-              <td>exemplo@email.com.br</td>
-              <td className="text-center">12</td>
-              <td className="text-right">
-                <Link className="link-blue" to="/">
-                  editar
-                </Link>
-                <button className="link-red" type="button">
-                  apagar
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>Cha Ji-hun</td>
-              <td>exemplo@email.com.br</td>
-              <td className="text-center">12</td>
-              <td className="text-right">
-                <Link className="link-blue" to="/">
-                  editar
-                </Link>
-                <button className="link-red" type="button">
-                  apagar
-                </button>
-              </td>
-            </tr>
+            {students.length === 0 ? (
+              <tr>
+                <td colSpan="10">Nenhum registro encontrado...</td>
+              </tr>
+            ) : (
+              students.map((student, index) => (
+                <tr>
+                  <td>{student.name}</td>
+                  <td>{student.email}</td>
+                  <td className="text-center">{student.age}</td>
+                  <td className="text-right">
+                    <Link className="link-blue" to="/">
+                      editar
+                    </Link>
+                    <button className="link-red" type="button">
+                      apagar
+                    </button>
+                  </td>
+                </tr>
+              ))
+            )}
           </tbody>
         </Table>
       </Card>

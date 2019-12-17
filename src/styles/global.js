@@ -40,6 +40,8 @@ export default createGlobalStyle`
     text-decoration:none;
   }
 
+  form{display:flex;flex-wrap:wrap; flex:0 1 auto; flex-direction:row}
+
   .btn{
     
     font-size: 14px;
@@ -49,11 +51,13 @@ export default createGlobalStyle`
     border-radius: 4px;
     display: flex;
     align-items: center;
+    margin-left:15px;
 
     svg {
       margin-right: 10px;
     }
   }
+
 
   .btn-action{
     background:#EE4D64;
@@ -92,6 +96,17 @@ export default createGlobalStyle`
   .text-center{text-align:center !important;}
   .text-right{text-align:right !important;}
   .text-left{text-align:left !important;}
+  
+  .col-third{
+    flex-basis: 33.33333333% !important;
+    max-width: 33.33333333% !important;
+    padding-right:15px;
+
+    &:last-child{
+      padding-right:0;
+    }
+  }
+  
 
 `;
 
@@ -159,5 +174,23 @@ export const Table = styled.table`
 
   tr td button {
     margin-left: 15px;
+  }
+`;
+
+export const FormGroup = styled.div`
+  flex-basis: 100%;
+  max-width: 100%;
+  flex-grow: 1;
+
+  &:nth-child(n + 2) {
+    margin-top: 15px;
+  }
+  label {
+    display: inline-block;
+    margin-bottom: 5px;
+  }
+  input {
+    display: block;
+    width: 100%;
   }
 `;

@@ -12,6 +12,18 @@ export const Container = styled.div`
   }
 `;
 
+export const FormContainer = styled.div`
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 0;
+
+  h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #444444;
+  }
+`;
+
 export const Head = styled.div`
   display: flex;
   align-items: center;

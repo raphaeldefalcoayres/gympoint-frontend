@@ -64,7 +64,7 @@ export default function Student() {
               <th width="400" className="text-center">
                 IDADE
               </th>
-              <th width="100"></th>
+              <th width="110"></th>
             </tr>
           </thead>
           <tbody>
@@ -74,7 +74,7 @@ export default function Student() {
               </tr>
             ) : (
               students.map((student, index) => (
-                <tr>
+                <tr key={student.id}>
                   <td>{student.name}</td>
                   <td>{student.email}</td>
                   <td className="text-center">{student.age}</td>

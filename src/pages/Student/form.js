@@ -1,12 +1,38 @@
 import React from 'react';
-
+import { useDispatch } from 'react-redux';
 import { MdAdd, MdChevronLeft } from 'react-icons/md';
 import { FormContainer, Head, Actions } from './styles';
 import { Card, FormGroup } from '~/styles/global';
 import { Link } from 'react-router-dom';
-import { Form, Input } from '@rocketseat/unform';
+import { Form } from '@rocketseat/unform';
+import * as Yup from 'yup';
+import { createStudentRequest } from '~/store/modules/student/actions';
+import InputCustom from '~/components/InputCustom';
+
+const schema = Yup.object().shape({
+  name: Yup.string().required('O nome completo é obrigatório'),
+  email: Yup.string()
+    .email('Insira um e-mail válido')
+    .required('O e-mail é obrigatório'),
+  age: Yup.number()
+    .typeError('A idade é obrigatória')
+    .required('A idade é obrigatória')
+    .integer('A idade é obrigatória e do tipo inteiro'),
+  weight: Yup.number()
+    .typeError('O peso é obrigatório')
+    .required('O peso é obrigatório'),
+  height: Yup.number()
+    .typeError('A altura é obrigatória')
+    .required('A altura é obrigatória'),
+});
 
 export default function Student() {
+  const dispatch = useDispatch();
+
+  function handleSubmit({ name, email, age, weight, height }) {
+    dispatch(createStudentRequest({ name, email, age, weight, height }));
+  }
+
   return (
     <FormContainer>
       <Head>
@@ -15,33 +41,33 @@ export default function Student() {
           <Link className="btn btn-default" to="/students">
             <MdChevronLeft size="20" color="#fff" /> VOLTAR
           </Link>
-          <Link className="btn btn-action" to="/students/form">
+          <button type="submit" form="studentForm" className="btn btn-action">
             <MdAdd size="20" color="#fff" /> SALVAR
-          </Link>
+          </button>
         </Actions>
       </Head>
       <Card>
-        <Form>
+        <Form id="studentForm" schema={schema} onSubmit={handleSubmit}>
           <FormGroup>
             <label htmlFor="name">NOME COMPLETO</label>
-            <Input name="name" placeholder="John Doe" />
+            <InputCustom name="name" placeholder="John Doe" />
           </FormGroup>
           <FormGroup>
             <label htmlFor="name">ENDEREÇO DE E-MAIL</label>
-            <Input name="email" placeholder="exemplo@email.com" />
+            <InputCustom name="email" placeholder="exemplo@email.com" />
           </FormGroup>
 
           <FormGroup className="col-third">
             <label htmlFor="age">IDADE</label>
-            <Input name="age" placeholder="" />
+            <InputCustom mask="999" name="age" placeholder="" />
           </FormGroup>
           <FormGroup className="col-third">
             <label htmlFor="weight">PESO (em kg)</label>
-            <Input name="weight" placeholder="" />
+            <InputCustom mask="999.99" name="weight" placeholder="" />
           </FormGroup>
           <FormGroup className="col-third">
             <label htmlFor="height">Altura</label>
-            <Input name="height" placeholder="" />
+            <InputCustom mask="999.99" name="height" placeholder="" />
           </FormGroup>
         </Form>
       </Card>

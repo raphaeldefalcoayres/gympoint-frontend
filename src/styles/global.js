@@ -40,7 +40,19 @@ export default createGlobalStyle`
     text-decoration:none;
   }
 
-  form{display:flex;flex-wrap:wrap; flex:0 1 auto; flex-direction:row}
+  form{
+    display:flex;
+    flex-wrap:wrap;
+    flex:0 1 auto;
+    flex-direction:row
+  }
+
+  form span {
+    color: #fb6f91;
+    align-self: flex-start;
+    margin: 5px 0 0 0;
+    display:block;
+  }
 
   .btn{
     
@@ -52,6 +64,7 @@ export default createGlobalStyle`
     display: flex;
     align-items: center;
     margin-left:15px;
+    border:none;
 
     svg {
       margin-right: 10px;
@@ -107,6 +120,25 @@ export default createGlobalStyle`
     }
   }
   
+  .Toastify__toast
+  {
+    border-radius:4px !important;
+  }
+
+  .Toastify__close-button{
+    margin-right:0;
+    margin-top:-5px;
+  }
+
+  .Toastify__toast--error
+  {
+    background:#EE4D64 !important;
+  }
+
+  .Toastify__toast--success
+  {
+    background:#28A869 !important;
+  }
 
 `;
 
